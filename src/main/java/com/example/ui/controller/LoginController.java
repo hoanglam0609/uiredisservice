@@ -38,7 +38,7 @@ public class LoginController {
     public String login(@ModelAttribute("user") User user, Model theModel, HttpServletResponse response){
         theModel.addAttribute("error","");
         String rs = daoUser.login(user);
-        log.info(rs);
+        
         if(rs.equalsIgnoreCase("Wrong username and password") || rs.equalsIgnoreCase("Server Error")){
 //            theModel.addAttribute("error",rs);
             return "redirect:/login?error=" + rs;

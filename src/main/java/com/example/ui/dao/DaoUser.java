@@ -24,7 +24,7 @@ public class DaoUser {
 
     public User saveUser(User user){
 
-        User user1 = restTemplate.postForObject("http://localhost:8000/api/register",user,User.class);
+        User user1 = restTemplate.postForObject("http://18.142.162.108:9191/api/register",user,User.class);
         return user1;
     }
 //    public List<User> getAllUsers(){
@@ -32,16 +32,16 @@ public class DaoUser {
 //    }
 
     public User getUserById(Long userId){
-        User user1 = restTemplate.getForObject("http://localhost:8000/user/" + userId,User.class);
+        User user1 = restTemplate.getForObject("http://18.142.162.108:9191/user/" + userId,User.class);
         return user1;
     }
 //    public boolean deleteUser(Long userId);
 //    public User getUserByPhone(String phone){
-//        User user1 = restTemplate.getForObject("http://localhost:8000/user/" + userId,User.class);
+//        User user1 = restTemplate.getForObject("http://18.136.126.140:8000/user/" + userId,User.class);
 //        return user1;
 //    }
     public String login(User user){
-        String result = restTemplate.postForObject("http://localhost:8000/api/login",user , String.class);
+        String result = restTemplate.postForObject("http://18.142.162.108:9191/api/login",user , String.class);
 
         return result;
     }
@@ -50,7 +50,7 @@ public class DaoUser {
 
         User u = new User();
         u.setName(token);
-        User user = restTemplate.postForObject("http://localhost:8000/user/userFromToken", u , User.class);
+        User user = restTemplate.postForObject("http://18.142.162.108:9191/user/userFromToken", u , User.class);
 
         return user;
     }

@@ -14,38 +14,43 @@ import java.util.List;
 
 @Service
 public class DaoPost {
-    @Autowired
-    private RestTemplate restTemplate;
+	@Autowired
+	private RestTemplate restTemplate;
 
-    public DaoPost() {
+	public DaoPost() {
 
-    }
+	}
 
-    public DaoPost(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-    }
+	public DaoPost(RestTemplate restTemplate) {
+		this.restTemplate = restTemplate;
+	}
 
-    public Post savePost(Post post){
-        Post post1 = restTemplate.postForObject("http://localhost:8001/post/",post,Post.class);
-        return post1;
-    }
-    public List<VO> getAllPosts(){
-        ResponseEntity<List<VO>> list = restTemplate.exchange("http://localhost:8001/post/", HttpMethod.GET, null, new ParameterizedTypeReference<List<VO>>() {
+	public Post savePost(Post post) {
+		Post post1 = restTemplate.postForObject("http://18.142.162.108:9191/post/", post, Post.class);
+		return post1;
+	}
 
-        });
-        List<VO> list1 = list.getBody();
-        return list1;
-    }
-    public VO getPostWithUser(Long id){
-        VO vo = restTemplate.getForObject("http://localhost:8001/post/" + id,VO.class);
-        return vo;
-    }
-    public List<VO> getPostByUserId(Long userId){
-        ResponseEntity<List<VO>> list = restTemplate.exchange("http://localhost:8001/post/user/" + userId, HttpMethod.GET, null, new ParameterizedTypeReference<List<VO>>() {
+	public List<VO> getAllPosts() {
+		ResponseEntity<List<VO>> list = restTemplate.exchange("http://18.142.162.108:9191/post/", HttpMethod.GET, null,
+				new ParameterizedTypeReference<List<VO>>() {
 
-        });
-        List<VO> list1 = list.getBody();
-        return list1;
-    }
+				});
+		List<VO> list1 = list.getBody();
+		return list1;
+	}
+
+	public VO getPostWithUser(Long id) {
+		VO vo = restTemplate.getForObject("http://18.142.162.108:9191/post/" + id, VO.class);
+		return vo;
+	}
+
+	public List<VO> getPostByUserId(Long userId) {
+		ResponseEntity<List<VO>> list = restTemplate.exchange("http://18.142.162.108:9191/post/user/" + userId,
+				HttpMethod.GET, null, new ParameterizedTypeReference<List<VO>>() {
+
+				});
+		List<VO> list1 = list.getBody();
+		return list1;
+	}
 //    public List<ResponseTemplateVO> getPostByUserId(Long userId);
 }
